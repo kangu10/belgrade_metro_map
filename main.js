@@ -92,7 +92,7 @@ map.on('load', () => {
 map.on('click', (e) => {
     // Query all fill layers (polygons) at the clicked point
     const features = map.queryRenderedFeatures(e.point, {
-        layers: ['layer1', 'layer2', 'layer3'] // These are your polygon layers
+        layers: ['area5', 'area10', 'area15'] // Updated to match your actual layer IDs
     });
     
     // If no features found, return
@@ -106,7 +106,7 @@ map.on('click', (e) => {
     
     // Create popup content
     let popupContent = '<div class="popup-content">';
-    // popupContent += '<h3>Area Information</h3>';
+    popupContent += '<h3>Area Information</h3>';
     popupContent += '<table class="popup-table">';
     
     // Add each property to the table
