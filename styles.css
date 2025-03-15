@@ -1,0 +1,127 @@
+body, html {
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure all map elements use the font */
+.map-title, 
+.map-legend, 
+.popup-content,
+.legend-title,
+.legend-label,
+.mapboxgl-popup-content,
+.mapboxgl-ctrl button {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+
+
+#map { 
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    width: 100%; 
+}
+
+/* Legend Styles */
+.map-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    max-width: 220px;
+    z-index: 1;
+}
+
+.legend-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.legend-label {
+    font-size: 12px;
+}
+
+/* Map Title Styles */
+.map-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    padding: 8px 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+/* Popup Styles */
+.popup-content {
+    font-family: Arial, sans-serif;
+    padding: 5px;
+}
+
+.popup-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+}
+
+.popup-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+    background-color: transparent;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.popup-table tr:nth-child(even) {
+    background-color: rgba(242, 242, 242, 0); /* Semi-transparent light gray */
+}
+
+.popup-table td {
+    padding: 4px;
+    vertical-align: top;
+    background-color: transparent;
+}
+
+.popup-table td:first-child {
+    width: 40%;
+}
+
+/* Adjust Mapbox's default popup styling */
+.mapboxgl-popup-content {
+    background-color: rgba(255, 255, 255, 0.5); /* 85% opacity white background */
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Optional: make the popup tip (arrow) semi-transparent too */
+.mapboxgl-popup-tip {
+    border-top-color: rgba(255, 255, 255, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.85);
+}
+
