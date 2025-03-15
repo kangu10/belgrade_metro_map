@@ -26,7 +26,7 @@ map.on('load', () => {
             'source': 'source1',
             'paint': { 
                 'fill-color': '#E1BEE7', 
-                'fill-opacity': 0.2,
+                'fill-opacity': 0.4,
                 'fill-outline-color': '#BA68C8'
             }
         });
