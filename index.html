@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Belgrade Metro Map with Legend</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="map"></div>
+    <div id="map-title" class="map-title">
+        Proposed metro stations in Belgrade and accessibility area
+    </div>
+    <div id="legend" class="map-legend"></div>
+
+     <!-- Start of new side panel -->
+     <div id="side-panel" class="side-panel">
+        <button id="toggle-panel-btn" class="toggle-panel-btn">Minimize</button>
+        <h2>About this map</h2>
+        <p>
+          This map shows proposed metro stations in Belgrade, along with their
+          accessibility areas (5, 10, and 15 minutes). 
+        </p>
+        <p>
+          The station locations are taken from the
+          <a href="https://www.bgmetro.rs" target="_blank">Development plans</a>
+            as of January 2025.
+        </p>
+        <p>
+          The map was created by 
+          <a href="https://t.me/kangu_10" target="_blank">Semyon Skotnikov</a>
+          using 
+          <a href="https://t.me/citysbackyard" target="_blank">Daniel Gorokhov</a>
+            's Python and PostGIS code.
+        </p>
+        <p>
+            Contact me:<br>
+            <a href="https://t.me/kangu10" target="_blank">Telegram</a><br>
+            <a href="mailto:kangukangu10@gmail.com" target="_blank">Email</a><br>
+            <a href="https://www.linkedin.com/in/sskotnikov/" target="_blank">LinkedIn</a>
+        </p>
+    </div>
+    <!-- End of new side panel -->
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
