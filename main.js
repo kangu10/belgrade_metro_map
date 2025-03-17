@@ -5,9 +5,7 @@ const map = new mapboxgl.Map(mapConfig);
 map.on('load', () => {
     // Load all data first
     Promise.all([
-        fetch(dataSources.area15min).then(res => res.json()),
-        fetch(dataSources.area10min).then(res => res.json()),
-        fetch(dataSources.area5min).then(res => res.json()),
+        fetch(dataSources.isochrones).then(res => res.json()),
         fetch(dataSources.metroLines).then(res => res.json()),
         fetch(dataSources.metroStations).then(res => res.json())
     ])
@@ -16,15 +14,14 @@ map.on('load', () => {
         map.addSource('source1', { type: 'geojson', data: data1 });
         map.addSource('source2', { type: 'geojson', data: data2 });
         map.addSource('source3', { type: 'geojson', data: data3 });
-        map.addSource('source4', { type: 'geojson', data: data4 });
-        map.addSource('source5', { type: 'geojson', data: data5 });
         
         // Add layers in specific order (bottom to top)
         map.addLayer({
-            'id': 'area5',
-            'type': 'fill',
-            'source': 'source1',
-            'paint': { 
+            id: 'area5',
+            type: 'fill',
+            source: 'source1',
+            filter: ['==', ['get', 'Time'], 15],
+            paint: { 
                 'fill-color': '#E1BEE7', 
                 'fill-opacity': 0.4,
                 'fill-outline-color': '#BA68C8'
@@ -32,10 +29,11 @@ map.on('load', () => {
         });
         
         map.addLayer({
-            'id': 'area10',
-            'type': 'fill',
-            'source': 'source2',
-            'paint': { 
+            id: 'area10',
+            type: 'fill',
+            source: 'source1',
+            filter: ['==', ['get', 'Time'], 10],
+            paint: { 
                 'fill-color': '#BA68C8', 
                 'fill-opacity': 0.25,
                 'fill-outline-color': '#9C27B0'
@@ -43,9 +41,10 @@ map.on('load', () => {
         });
         
         map.addLayer({
-            'id': 'area15',
-            'type': 'fill',
-            'source': 'source3',
+            id: 'area15',
+            type: 'fill',
+            source: 'source1',
+            filter: ['==', ['get', 'Time'], 5],
             'paint': { 
                 'fill-color': '#9C27B0', 
                 'fill-opacity': 0.3,
@@ -57,7 +56,7 @@ map.on('load', () => {
         map.addLayer({
             id: 'line-1',
             type: 'line',
-            source: 'source4',
+            source: 'source2',
             filter: ['==', ['get', 'line'], '1'], // Only features whose "line" property == "1"
             paint: {
               'line-color': '#FF0000',
@@ -68,7 +67,7 @@ map.on('load', () => {
           map.addLayer({
             id: 'line-2',
             type: 'line',
-            source: 'source4',
+            source: 'source2',
             filter: ['==', ['get', 'line'], '2'],
             paint: {
               'line-color': '#0000FF',
@@ -79,7 +78,7 @@ map.on('load', () => {
           map.addLayer({
             id: 'line-3',
             type: 'line',
-            source: 'source4',
+            source: 'source2',
             filter: ['==', ['get', 'line'], '3'],
             paint: {
               'line-color': '#00AA00',
@@ -91,7 +90,7 @@ map.on('load', () => {
         map.addLayer({
             'id': 'stations',
             'type': 'circle',
-            'source': 'source5',
+            'source': 'source3',
             'paint': { 
                 'circle-color': '#1E88E5',
                 'circle-radius': 5,
@@ -106,37 +105,40 @@ map.on('load', () => {
     .catch(error => console.error('Error loading data:', error));
 });
 
-map.on('click', (e) => {
-    // Query all fill layers (polygons) at the clicked point
-    const features = map.queryRenderedFeatures(e.point, {
-        layers: ['area5', 'area10', 'area15'] // Updated to match your actual layer IDs
-    });
-    
-    // If no features found, return
-    if (!features.length) return;
-    
-    // Get the first feature (topmost)
-    const feature = features[0];
-    
-    // Extract properties from the feature
-    const properties = feature.properties;
-    
-    // Create popup content
-    let popupContent = '<div class="popup-content">';
-    popupContent += '<table class="popup-table">';
-    
-    // Add each property to the table
-    for (const [key, value] of Object.entries(properties)) {
-        popupContent += `<tr><td><strong>${key}:</strong></td><td>${value}</td></tr>`;
-    }
-    
-    popupContent += '</table></div>';
-    
-    // Create a popup
-    new mapboxgl.Popup({ closeButton: true, maxWidth: '300px' })
-        .setLngLat(e.lngLat)
-        .setHTML(popupContent)
-        .addTo(map);
+
+// Add click event for metro stations
+map.on('click', 'stations', (e) => {
+  // Get clicked feature
+  const feature = e.features[0];
+  const properties = feature.properties;
+  
+  // Create popup content
+  let popupContent = '<div class="popup-content">';
+  popupContent += '<table class="popup-table">';
+  
+  // Add each property to the table (excluding any you don't want to show)
+  for (const [key, value] of Object.entries(properties)) {
+      // You might want to exclude some internal properties or format certain values
+      popupContent += `<tr><td><strong>${key}:</strong></td><td>${value}</td></tr>`;
+  }
+  
+  popupContent += '</table></div>';
+  
+  // Create a popup
+  new mapboxgl.Popup({ closeButton: true, maxWidth: '300px' })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML(popupContent)
+      .addTo(map);
+});
+
+// Change cursor to pointer when hovering over stations
+map.on('mouseenter', 'stations', () => {
+  map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change cursor back when leaving stations
+map.on('mouseleave', 'stations', () => {
+  map.getCanvas().style.cursor = '';
 });
 
 

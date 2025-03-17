@@ -11,21 +11,16 @@ const mapConfig = {
 
 // Data sources
 const dataSources = {
-    // area5min: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/iso_mic_plugin_OAS_with_population_5min.geojson',
-    // area10min: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/iso_mic_plugin_OAS_with_population_10min.geojson',
-    // area15min: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/iso_mic_plugin_OAS_with_population_15min.geojson',
-    area5min: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/generalized_5_min_iso.geojson',
-    area10min: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/generalized_10_min_iso.geojson',
-    area15min: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/generalized_15_min_iso.geojson',
+    isochrones: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/generalized_dissolved_iso.geojson',
     metroLines: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/metro_lines_smooth.geojson',
-    metroStations: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/metro_stations.geojson'
+    metroStations: 'https://raw.githubusercontent.com/kanguu10/belgrade_metro_map/main/metro_stations_with_pop.geojson'
 };
 
 // Define your layers with their properties
 const layers = [
     {
         id: 'stations',
-        source: 'source5',
+        source: 'source3',
         type: 'circle',
         color: '#1E88E5',       // Bright blue for stations
         radius: 5,
@@ -53,17 +48,17 @@ const layers = [
       },
     {
         id: 'area15',
-        source: 'source3',
+        source: 'source1',
         type: 'fill',
-        color: '#9C27B0',       // Green for 5-minute area
+        color: '#9C27B0',       // for 5-minute area
         opacity: 0.5,
         label: '5 minutes accessibility area'
     },
     {
         id: 'area10',
-        source: 'source2',
+        source: 'source1',
         type: 'fill',
-        color: '#BA68C8',       // Lighter green for 10-minute area
+        color: '#BA68C8',       // for 10-minute area
         opacity: 0.5,
         label: '10 minutes accessibility area'
     },
@@ -71,7 +66,7 @@ const layers = [
         id: 'area5',
         source: 'source1',
         type: 'fill',
-        color: '#E1BEE7',       // Very light green for 15-minute area
+        color: '#E1BEE7',       // for 15-minute area
         opacity: 0.5,
         label: '15 minutes accessibility area'
     }
