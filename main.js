@@ -303,11 +303,6 @@ map.on('load', () => {
 function createLegend(layers) {
     const legendContainer = document.getElementById('legend');
     
-    // Add legend title
-    const title = document.createElement('div');
-    title.className = 'legend-title';
-    title.textContent = 'Map Layers';
-    legendContainer.appendChild(title);
     
     layers.forEach(layer => {
         const item = document.createElement('div');
