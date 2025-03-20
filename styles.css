@@ -220,3 +220,10 @@ body, html {
     border-color: #1E88E5;
     box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.25);
 }
+
+.basemap-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
