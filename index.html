@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Belgrade Metro Accessibility Map</title>
-    <link rel="icon" href="/images/icon.png" type="image/png" />
+    <link rel="icon" href="icon.png" type="image/png" />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +25,18 @@
         Proposed metro stations in Belgrade and walking accessibility area
     </div>
     <div id="legend" class="map-legend"></div>
+    
+    <!-- New basemap selector -->
+    <div id="basemap-control" class="basemap-control">
+        <select id="basemap-select" class="basemap-select">
+            <option value="mapbox://styles/mapbox/light-v11">Light</option>
+            <option value="mapbox://styles/mapbox/dark-v11">Dark</option>
+            <option value="mapbox://styles/mapbox/streets-v12">Streets</option>
+            <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
+            <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+            <option value="mapbox://styles/mapbox/satellite-streets-v12">Satellite Streets</option>
+        </select>
+    </div>
 
      <!-- Start of new side panel -->
      <div id="side-panel" class="side-panel">

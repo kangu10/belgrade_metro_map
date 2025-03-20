@@ -15,8 +15,6 @@ body, html {
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
-
-
 #map { 
     position: absolute; 
     top: 0; 
@@ -128,7 +126,7 @@ body, html {
 
 .side-panel {
     position: absolute;
-    top: 80px;       /* Adjust so it doesn’t overlap with the title at top */
+    top: 80px;       /* Adjust so it doesn't overlap with the title at top */
     left: 20px;      /* Keep it slightly away from the left edge */
     width: 250px;    /* Set a suitable width */
     max-height: 70%; /* Prevent overflow if the text is long */
@@ -173,8 +171,8 @@ body, html {
 }
 
 .side-panel.minimized {
-    width: 60px;                 /* Make it wide enough for the button’s text */
-    min-height: 60px;            /* A little height, so it’s a neat square-ish box */
+    width: 60px;                 /* Make it wide enough for the button's text */
+    min-height: 60px;            /* A little height, so it's a neat square-ish box */
     padding: 5px;                /* Less padding to avoid big white margins */
     overflow: hidden;            /* Hide text, etc. */
     display: flex;               /* Flex container for vertical+horizontal centering */
@@ -188,4 +186,37 @@ body, html {
 .side-panel.minimized p,
 .side-panel.minimized a {
     display: none;
+}
+
+/* Basemap selector styles */
+.basemap-control {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.basemap-select {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.basemap-select:hover {
+    border-color: #999;
+}
+
+.basemap-select:focus {
+    outline: none;
+    border-color: #1E88E5;
+    box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.25);
 }
